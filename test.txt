@@ -1,0 +1,25 @@
+<button onClick="doit">
+</button>
+
+
+class a
+{
+        move()
+        {
+            this.kill();
+        }
+
+        kill()
+        {
+
+        }
+
+}
+
+doit()
+{
+   p= new a();
+   p.move();
+
+
+}
