@@ -1,8 +1,9 @@
+import _ from 'lodash'
 const SIZE = 50;
 class Board {
     turn = "X";
-
     places = [];
+    acceptInngInput=true;
 
     constructor() {
         //this.onplaceclick=this.onplaceclick.bind(this);
@@ -21,6 +22,7 @@ class Board {
                 pos++
             }
         }
+        this.acceptInngInput=true;
     }
 
     reset()
@@ -36,7 +38,7 @@ class Board {
 
         const winCondtions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [2, 5, 8], [1, 4, 7]]
         for (let counter = 0; counter < winCondtions.length; counter++) {
-            debugger
+       
             const singleCondtion = winCondtions[counter];
             const place1 = this.places[singleCondtion[0]];
             const place2 = this.places[singleCondtion[1]];
@@ -45,20 +47,42 @@ class Board {
             if (place1.state == place2.state && place2.state == place3.state && place3.state == this.turn) {
                 alert(this.turn + " Wins!!");
                 this.reset();
-                break;
+                
             }
         }
+        this.turn = this.turn == "X" ? "O" : "X"
+        this.think();
+    }
+
+    think()
+    {
+
+        const empty=this.places.filter(e=>e.state=="")
+        let pos=_.random(0,empty.length-1);
+        let spot=empty[pos];
+        spot.redraw(this.turn)
+
+        
+        this.acceptInngInput=true;
     }
 
 
     onplaceclick(e) {
 
+        if(this.acceptInngInput==false)
+        {
+            return ;
+        }
 
         const currentplace = e.target.holder;
         if (currentplace.state == '') {
             currentplace.redraw(this.turn);
-            this.checkWinner();
-            this.turn = this.turn == "X" ? "O" : "X"
+            this.acceptInngInput=false;
+           setTimeout(()=>{
+               this.checkWinner();
+           },200);
+          
+           
         }
 
     }
