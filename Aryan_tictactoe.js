@@ -69,8 +69,8 @@ class Place {
         this.htmlelement = document.createElement("button");//create button
         document.getElementById("div1").appendChild(this.htmlelement);//add button in div with id= div1
         //all styling of button:
-        this.htmlelement.style.top = SIZE * row + 150;
-        this.htmlelement.style.left = SIZE * column + 450;
+        this.htmlelement.style.top = SIZE * row + 100;
+        this.htmlelement.style.left = SIZE * column + 500;
         this.htmlelement.style.height = SIZE;
         this.htmlelement.style.width = SIZE;
         this.htmlelement.style.position = "absolute";
@@ -145,12 +145,21 @@ class Place {
 
         }
         if (count == 0) {//only for start of game when O is yet to be placed
-            let random_o = _.random(0, empty_place.length - 1);
-            let pos_o = empty_place[random_o];
+            let random_o=0;
+            let pos_o=0;
             if (pos_o == undefined) {
-                return;
+                alert("GAME OVER");
+                MYBOARD.reset();//resets board
             }
-            else {
+            else if(places[4].state=="X"){// (places[4] is the center) and  if player1 draws in the center the computer will draw in one of the corners.
+                let corner_array=[places[0],places[2],places[6],places[8]];
+                random_o=_.random(0,corner_array.length-1);
+                pos_o= corner_array[random_o];
+                pos_o.htmlelement.textContent = value;
+                pos_o.state = value;
+            }
+            else if(places[4].state==""){// if player1 doesnt draw in the center the computer will draw in the center for higher chance of winning.
+                pos_o= places[4];//places[4] is the center
                 pos_o.htmlelement.textContent = value;
                 pos_o.state = value;
             }
