@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html"
-    
   },
   "author": "Aryan Manandhar",
   "license": "ISC",

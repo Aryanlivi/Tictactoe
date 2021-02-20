@@ -29,10 +29,12 @@ class Board {//creating a board class
     onplaceclick(e) {//when button is clicked
         let currentplace = e.target.holder;//to specify which button is clicked
         if (currentplace.state == "") {//if clicked button  is empty then:
+            this.thesound();
             currentplace.draw(this.places, this.value, currentplace, this.lock, this.empty_place);// draw(places, value, currentplace, lock, empty_place) 
             this.changeturn();//changing turn
         }
         if (this.lock == true) {//for O
+            this.thesound();
             currentplace.draw(this.places, this.value, currentplace, this.lock, this.empty_place);// draw(places, value, currentplace, lock, empty_place) 
             this.changeturn();//changing turn
         }
@@ -59,6 +61,10 @@ class Board {//creating a board class
         this.places.forEach((e) => e.htmlelement.textContent = "");//changes text for all buttons to ""
         this.lock = false;//resets lock
     }
+    thesound(){     
+        this.sound=document.getElementById("MyAudio");
+        this.sound.play();
+    }
 }
 class Place {
     state = "";//initial state of buttons
@@ -69,7 +75,7 @@ class Place {
         this.htmlelement = document.createElement("button");//create button
         document.getElementById("div1").appendChild(this.htmlelement);//add button in div with id= div1
         //all styling of button:
-        this.htmlelement.style.top = SIZE * row + 100;
+        this.htmlelement.style.top = SIZE * row + 200;
         this.htmlelement.style.left = SIZE * column + 500;
         this.htmlelement.style.height = SIZE;
         this.htmlelement.style.width = SIZE;

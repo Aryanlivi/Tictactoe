@@ -1,13 +1,33 @@
 <html>
 <head>
     <title>TICTACTOE</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .container{
+            padding:20px;
+            background-color:white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin:40px;
+            }
+    </style>
 </head>
 <body> 
-<div id="div1">
+<div id="div1" class="container">
     <h1 align="center">TICTACTOE</h1>
+    <audio id="MyAudio">
+        <source src="sounds/button_click.mp3" type="audio/mpeg">
+    </audio>
 </div>
- <script src="Aryan_tictactoe.js">
- </script>
+<script src="Aryan_tictactoe.js" >
+</script>
+ <div id="div2">
+    <audio id="MyAudio2">
+        <source src="sounds/background.mp3" type="audio/mpeg" muted="muted">
+    </audio>
+</div>
+ <script src="index.js">
+</script>
+ 
 
 </body>
 
